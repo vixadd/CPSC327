@@ -2,20 +2,73 @@
  * functionstocomplete.cpp
  *
  *  Created on: Sep 10, 2017
- *      Author: keith
+ *      Author: davidkroell
  */
 
 //============================================================================
 //	TODO add necessary includes here
 //============================================================================
 
-//============================================================================
-//	stuff you will need
-//============================================================================
-//TODO define a structure to track words and number of times they occur
+#include <array_functions.h>
 
-//TODO add a global array of entry structs (global to this file)
+using namespace std;
 
-//TODO add variable to keep track of next available slot in array
 
-//TODO define all functions in header file
+struct Word {
+	string word;
+	int count = 0;
+};
+
+Word * wordPointer = new Word[10];
+int nextAvailableSlot = 0;
+
+void clearArray() {
+
+}
+
+int getArraySize() {
+
+}
+
+string getArrayWordAt(int i) {
+
+}
+
+int getArrayWord_NumbOccur_At(int i) {
+
+}
+
+bool processFile(fstream &myfstream) {
+
+}
+
+void processLine(string &myString) {
+
+}
+
+void processToken(string &token) {
+
+}
+
+bool openFile(fstream& myfile, const string& myFileName,
+		ios_base::openmode mode = ios_base::in) {
+
+
+}
+
+void closeFile(std::fstream& myfile) {
+
+}
+
+int writeArraytoFile(const std::string &outputfilename) {
+
+}
+
+void sortArray(constants::sortOrder so) {
+
+}
+
+
+
+
+
