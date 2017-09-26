@@ -7,6 +7,7 @@
 
 
 #include "array_functions.h"
+#include "utilities.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ void clearArray() {
 }
 
 int getArraySize() {
-	return size_of_array;
+	return nextAvailableSlot;
 }
 
 string getArrayWordAt(int i) { return wordPointer[i].word; }
@@ -72,22 +73,28 @@ void processLine(string &myString) {
 
 void processToken(string &token) {
 
+	strip_unwanted_chars(token);
+
+	if(token == "")
+		return;
+
 	// Check if word is already in the Array.
-	for(int i = 0; i < getArraySize(); i++) {
+	for(int i = 0; i < size_of_array; i++) {
 		if(wordPointer[i].word == token)
 		{
 			wordPointer[i].count += 1;
+
 			return;
 		}
 	}
 
 
 	// Get old and new sizes for the arrays
-	int old_array_size = getArraySize();
-	int new_array_size = getArraySize() + 10;
+	int old_array_size = size_of_array;
+	int new_array_size = size_of_array + 10;
 
 	// Check if the array is full. If so, extend the array for wordPointer.
-	if(nextAvailableSlot == getArraySize() - 1 || nextAvailableSlot == 0)
+	if(nextAvailableSlot == size_of_array - 1 || nextAvailableSlot == 0)
 	{
 		Word* newArr = new Word[new_array_size];
 		std::copy(wordPointer, wordPointer + std::min(old_array_size, new_array_size), newArr);
@@ -99,8 +106,9 @@ void processToken(string &token) {
 
 	Word entry;
 	entry.word = token;
+	entry.count = 1;
 
-
+	// Populate the next slot with the pointer.
 	wordPointer[nextAvailableSlot] = entry;
 
 	// Increment next available slot for the next new insertion.
