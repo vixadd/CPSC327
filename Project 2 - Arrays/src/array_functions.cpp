@@ -5,58 +5,112 @@
  *      Author: davidkroell
  */
 
-//============================================================================
-//	TODO add necessary includes here
-//============================================================================
 
 #include "array_functions.h"
 
 using namespace std;
 
-
+/*
+ * Data needed for the computations
+ */
 struct Word {
 	string word;
-	int count = 0;
+	int count;
 };
 
-Word * wordPointer = new Word[10];
+Word* wordPointer = new Word[0];
 int nextAvailableSlot = 0;
+int size_of_array = 0;
 
+/*
+ * Data gathering Methods for functions.
+ */
 void clearArray() {
+	Word* newArr = new Word[0];
+	delete[] wordPointer;
+	wordPointer = newArr;
 
+	size_of_array = 0;
 }
 
 int getArraySize() {
-
-	return 0;
+	return size_of_array;
 }
 
-string getArrayWordAt(int i) {
+string getArrayWordAt(int i) { return wordPointer[i].word; }
 
-	return "";
-}
+int getArrayWord_NumbOccur_At(int i) { return wordPointer[i].count; }
 
-int getArrayWord_NumbOccur_At(int i) {
-	return 0;
-}
+/*
+ * ========================================
+ * 				Main Functions
+ * ========================================
+ */
 
 bool processFile(fstream &myfstream) {
 
-	return false;
+	if (myfstream.is_open()){
+
+		string line;
+		while(getline(myfstream, line)) {
+			processLine(line);
+		}
+		return true;
+
+	} else return false;
 }
 
 void processLine(string &myString) {
 
+	istringstream stream(myString);
+	string word;
+	while(stream >> word)
+	{
+		processToken(word);
+	}
 }
 
 void processToken(string &token) {
 
+	// Check if word is already in the Array.
+	for(int i = 0; i < getArraySize(); i++) {
+		if(wordPointer[i].word == token)
+		{
+			wordPointer[i].count += 1;
+			return;
+		}
+	}
+
+
+	// Get old and new sizes for the arrays
+	int old_array_size = getArraySize();
+	int new_array_size = getArraySize() + 10;
+
+	// Check if the array is full. If so, extend the array for wordPointer.
+	if(nextAvailableSlot == getArraySize() - 1 || nextAvailableSlot == 0)
+	{
+		Word* newArr = new Word[new_array_size];
+		std::copy(wordPointer, wordPointer + std::min(old_array_size, new_array_size), newArr);
+		delete[] wordPointer;
+		wordPointer = newArr;
+
+		size_of_array = new_array_size;
+	}
+
+	Word entry;
+	entry.word = token;
+
+
+	wordPointer[nextAvailableSlot] = entry;
+
+	// Increment next available slot for the next new insertion.
+	nextAvailableSlot++;
 }
 
 bool openFile(fstream& myfile, const string& myFileName, ios_base::openmode mode) {
 
-	return false;
 
+	return false;
 }
 
 void closeFile(std::fstream& myfile) {
