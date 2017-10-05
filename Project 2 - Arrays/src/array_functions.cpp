@@ -5,11 +5,15 @@
  *      Author: davidkroell
  */
 
+#include <locale>
 
 #include "array_functions.h"
 #include "utilities.h"
+#include "constants.h"
+
 
 using namespace std;
+using namespace constants;
 
 /*
  * Data needed for the computations
@@ -20,6 +24,9 @@ struct Word {
 };
 
 Word* wordPointer = new Word[0];
+fstream filePointer;
+
+bool open = false;
 int nextAvailableSlot = 0;
 int size_of_array = 0;
 
@@ -32,6 +39,7 @@ void clearArray() {
 	wordPointer = newArr;
 
 	size_of_array = 0;
+	nextAvailableSlot = 0;
 }
 
 int getArraySize() {
@@ -63,10 +71,12 @@ bool processFile(fstream &myfstream) {
 
 void processLine(string &myString) {
 
+	locale loc;
 	istringstream stream(myString);
 	string word;
 	while(stream >> word)
 	{
+		for (int i = 0; word[i]; i++) word[i] = tolower(word[i]);
 		processToken(word);
 	}
 }
@@ -117,21 +127,89 @@ void processToken(string &token) {
 
 bool openFile(fstream& myfile, const string& myFileName, ios_base::openmode mode) {
 
-
-	return false;
+	myfile.open(myFileName.c_str(), mode);
 }
 
 void closeFile(std::fstream& myfile) {
-
+	if(open) {
+		filePointer.close();
+		open = false;
+	}
 }
 
 int writeArraytoFile(const std::string &outputfilename) {
+
+
 
 	return 0;
 }
 
 void sortArray(constants::sortOrder so) {
 
+	switch( so ) {
+	case NONE:     // --> None is invoked. Leave the Array untouched.
+
+		return;
+	case ASCENDING:                   // --> sort alphabetically in ascending order.
+
+		for( int i = 1; i < getArraySize(); i++) {
+
+			int j = i;
+			while(wordPointer[j].word.at(0) < wordPointer[j-1].word.at(0)) {
+
+				Word temp = wordPointer[j];
+				wordPointer[j] = wordPointer[j-1];
+				wordPointer[j-1] = temp;
+
+				if(j == 1) {
+					break;
+				} else {
+					j--;
+				}
+
+			}
+		}
+
+		return;
+	case DESCENDING:                   // --> sort alphabetically in descending order.
+
+		for( int i = 0; i < getArraySize()-1; i++) {
+
+			int j = i;
+			while(wordPointer[j].word.at(0) > wordPointer[j+1].word.at(0)) {
+
+				Word temp = wordPointer[j];
+				wordPointer[j] = wordPointer[j+1];
+				wordPointer[j+1] = temp;
+
+				if(j == 1) {
+					break;
+				} else {
+					j--;
+				}
+			}
+		}
+		return;
+	case NUMBER_OCCURRENCES:           // --> Sort by number of occurrences in array.
+		for( int i = 1; i < getArraySize(); i++) {
+
+			int j = i;
+			while(wordPointer[j].count < wordPointer[j-1].count) {
+
+				Word temp = wordPointer[j];
+				wordPointer[j] = wordPointer[j-1];
+				wordPointer[j-1] = temp;
+
+				if(j == 1) {
+					break;
+				} else {
+					j--;
+				}
+
+			}
+		}
+		return;
+	}
 }
 
 
