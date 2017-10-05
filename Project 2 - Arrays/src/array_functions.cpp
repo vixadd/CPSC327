@@ -30,6 +30,8 @@ bool open = false;
 int nextAvailableSlot = 0;
 int size_of_array = 0;
 
+string toLower(string myString);
+
 /*
  * Data gathering Methods for functions.
  */
@@ -71,12 +73,10 @@ bool processFile(fstream &myfstream) {
 
 void processLine(string &myString) {
 
-	locale loc;
 	istringstream stream(myString);
 	string word;
 	while(stream >> word)
 	{
-		for (int i = 0; word[i]; i++) word[i] = tolower(word[i]);
 		processToken(word);
 	}
 }
@@ -88,9 +88,17 @@ void processToken(string &token) {
 	if(token == "")
 		return;
 
+	string tempToken = token;
+	for (int i = 0; token[i]; i++) token[i] = tolower(token[i]);
+
 	// Check if word is already in the Array.
 	for(int i = 0; i < size_of_array; i++) {
-		if(wordPointer[i].word == token)
+
+		string arrayWord = getArrayWordAt(i);
+
+		for (int j = 0; arrayWord[j]; j++) arrayWord[j] = tolower(arrayWord[j]);
+
+		if(arrayWord == token)
 		{
 			wordPointer[i].count += 1;
 
@@ -98,6 +106,8 @@ void processToken(string &token) {
 		}
 	}
 
+	// We didn't find any similarities, so lets get our old token back.
+	token = tempToken;
 
 	// Get old and new sizes for the arrays
 	int old_array_size = size_of_array;
@@ -128,20 +138,39 @@ void processToken(string &token) {
 bool openFile(fstream& myfile, const string& myFileName, ios_base::openmode mode) {
 
 	myfile.open(myFileName.c_str(), mode);
+
+
+
+	return myfile.is_open();
 }
 
 void closeFile(std::fstream& myfile) {
-	if(open) {
-		filePointer.close();
-		open = false;
+	if(!myfile.is_open()) {
+		myfile.close();
 	}
 }
 
 int writeArraytoFile(const std::string &outputfilename) {
 
+	if(getArraySize() == 0) {
+		return FAIL_NO_ARRAY_DATA;
+	}
 
+	ofstream mFile;
+	mFile.open(outputfilename.c_str());
 
-	return 0;
+	if(mFile.is_open()) {
+
+		for(int i = 0; i < getArraySize(); i++) {
+			mFile << wordPointer[i].word << " " << wordPointer[i].count << endl;
+		}
+
+		return SUCCESS;
+	} else {
+		return FAIL_FILE_DID_NOT_OPEN;
+	}
+
+	return FAIL;
 }
 
 void sortArray(constants::sortOrder so) {
@@ -155,7 +184,7 @@ void sortArray(constants::sortOrder so) {
 		for( int i = 1; i < getArraySize(); i++) {
 
 			int j = i;
-			while(wordPointer[j].word.at(0) < wordPointer[j-1].word.at(0)) {
+			while(toLower(wordPointer[j].word) < toLower(wordPointer[j-1].word)) {
 
 				Word temp = wordPointer[j];
 				wordPointer[j] = wordPointer[j-1];
@@ -166,17 +195,18 @@ void sortArray(constants::sortOrder so) {
 				} else {
 					j--;
 				}
-
 			}
 		}
 
+
+
 		return;
-	case DESCENDING:                   // --> sort alphabetically in descending order.
+	case DESCENDING:           // --> sort alphabetically in descending order.
 
 		for( int i = 0; i < getArraySize()-1; i++) {
 
 			int j = i;
-			while(wordPointer[j].word.at(0) > wordPointer[j+1].word.at(0)) {
+			while(toLower(wordPointer[j].word) > toLower(wordPointer[j+1].word)) {
 
 				Word temp = wordPointer[j];
 				wordPointer[j] = wordPointer[j+1];
@@ -210,6 +240,12 @@ void sortArray(constants::sortOrder so) {
 		}
 		return;
 	}
+}
+
+string toLower(string myString) {
+	for (int i = 0; myString[i]; i++) myString[i] = tolower(myString[i]);
+
+	return myString;
 }
 
 

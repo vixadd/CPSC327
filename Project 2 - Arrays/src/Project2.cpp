@@ -168,8 +168,11 @@ bool test_File(string filename, sortOrder mysortorder= NONE){
 	if (!openFile(myfstream, filename))
 		return false;
 
+
+
 	if (!processFile(myfstream))
 		return false;
+
 
 	sortArray(mysortorder);
 	string name = TEST_DATA_FULL_OUT;
