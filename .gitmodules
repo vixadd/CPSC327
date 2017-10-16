@@ -1,0 +1,3 @@
+[submodule "CPSC327"]
+	path = CPSC327
+	url = https://github.com/CNUClasses/CPSC327.git
