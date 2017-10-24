@@ -37,19 +37,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: lib327_proj3_stringparser.a
+all: lib327_proj3_stringparser.so
 
 # Tool invocations
-lib327_proj3_stringparser.a: $(OBJS) $(USER_OBJS)
+lib327_proj3_stringparser.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
-	@echo 'Invoking: GCC Archiver'
-	ar -r  "lib327_proj3_stringparser.a" $(OBJS) $(USER_OBJS) $(LIBS)
+	@echo 'Invoking: GCC C++ Linker'
+	g++ -shared -o "lib327_proj3_stringparser.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(ARCHIVES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) lib327_proj3_stringparser.a
+	-$(RM) $(LIBRARIES)$(CC_DEPS)$(C++_DEPS)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) lib327_proj3_stringparser.so
 	-@echo ' '
 
 .PHONY: all clean dependents
