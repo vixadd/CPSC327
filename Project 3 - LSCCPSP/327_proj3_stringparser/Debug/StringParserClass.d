@@ -1,0 +1,1 @@
+StringParserClass.o: ../StringParserClass.cpp

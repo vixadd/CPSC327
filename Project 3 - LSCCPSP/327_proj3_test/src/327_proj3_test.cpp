@@ -73,8 +73,11 @@ int main(int argc, char *argv[]){
 	vector<string> myStrings;
 	int iret = SUCCESS;
 
-	//TODO verify that correct number of params are entered
-	//TODO otherwise return output WRONG_NUMB_ARGS and return FAIL_WRONG_NUMBER_ARGS
+
+	if (argc < EXPECTED_NUMBER_ARGUMENTS) {
+		cout << WRONG_NUMB_ARGS << endl;
+		return FAIL_WRONG_NUMBER_ARGS;
+	}
 
 	//harvest all the user info
 	string inputfile = argv[1];
