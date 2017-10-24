@@ -41,13 +41,13 @@ endif
 all: 327_proj3_test
 
 dependents:
-	-cd /home/silver/Documents/kroelld.git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug && $(MAKE) all
+	-cd /home/silver/Documents/kroelld.git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug && $(MAKE) clean all
 
 # Tool invocations
 327_proj3_test: $(OBJS) $(USER_OBJS) /home/silver/Documents/kroelld.git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug/lib327_proj3_fileIO.a
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L../../327_proj3_fileIO/Debug -o "327_proj3_test" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/silver/Documents/kroelld.git/CPSC327/Project 3 - LSCCPSP/327_proj3_fileIO/Debug" -o "327_proj3_test" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
