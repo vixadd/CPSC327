@@ -7,6 +7,10 @@
 
 #include <string>
 #include <string.h>
+#include "../327_proj3_test/includes/StringParserClass.h"
 
-//TODO Fill in
+KP_StringParserClass::StringParserClass::StringParserClass() {
+
+
+}
 
