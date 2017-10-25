@@ -5,6 +5,7 @@
  *      Author: keith
  */
 
+#include <iostream>
 #include <string>
 #include <string.h>
 #include "../327_proj3_test/includes/StringParserClass.h"
@@ -79,7 +80,7 @@ int KP_StringParserClass::StringParserClass::getDataBetweenTags(char *pDataToSea
 		// Initialize the iteration pointer to the character after
 		// the '>' in our start tag, and initialize the string to be
 		// inserted into the vector to an empty string.
-		char *itrPtr = (endTagStartPointer+1);
+		char *itrPtr = (endTagStartPointer);
 		std::string insString = "";
 
 		// Extract the given string between the pointer
@@ -95,10 +96,10 @@ int KP_StringParserClass::StringParserClass::getDataBetweenTags(char *pDataToSea
 
 		// Reset the pointer to occure after the tag insertion we just completed
 		// And rerun the find tags to find a new tag.
-		startTagStartPointer = (endTagEndPointer+1);
-		endTagStartPointer   = (endTagEndPointer+1);
-		startTagEndPointer   = (endTagEndPointer+1);
-		endTagEndPointer     = (endTagEndPointer+1);
+		startTagStartPointer = (endTagEndPointer);
+		endTagStartPointer   = (endTagEndPointer);
+		startTagEndPointer   = (endTagEndPointer);
+		endTagEndPointer     = (endTagEndPointer);
 
 		// Rerun the start and end tag to find a new tag position
 		// from the new starting point.
@@ -111,7 +112,7 @@ int KP_StringParserClass::StringParserClass::getDataBetweenTags(char *pDataToSea
 
 void KP_StringParserClass::StringParserClass::cleanup()
 {
-	// Do Nothing???
+	// Do Nothing
 }
 
 int KP_StringParserClass::StringParserClass::findTag(char *pTagToLookFor, char *&pStart, char *&pEnd)
@@ -120,44 +121,35 @@ int KP_StringParserClass::StringParserClass::findTag(char *pTagToLookFor, char *
 		return FAIL;
 	}
 
-	char* mTag = "";
+	std::string mTag = "";
+	int itr = 0;
+	int ilen = strlen(pStart);
+	int itrLen = 0;
 
 	// Find location of the starttag
-	while (pStart != 0) {
+	while ((pStart && pEnd) && (ilen > itrLen)) {
 
-		if (*pStart == '<') {
 
-			// Store the start of the pointer temporarily.
-			char *& tempStart = pStart;
+		while(pEnd[0] == pTagToLookFor[itr]) {
+			mTag += pEnd[0];
+			pEnd += 1;
+			itrLen++;
 
-			// Find the End of the tag.
-			while(pStart != 0) {
-
-				// Store the tag contents in mTag
-				mTag += *pStart;
-
-				// Increment the startpointer.
-				pStart += 1;
-
-				// We have reached the end of the tag.
-				if (*pStart == '>') {
-
-					// Set the values of the start and end of the tag itself.
-					pStart = tempStart;
-					pEnd = pStart;
-					break;
-				}
-
-			}
-
-			// If the tag we found is equal to the sought after tag
-			// Then break the loop. We found the Tag.
-			if(mTag == pTagToLookFor)
-				break; // We have the start and end pointer of the tag.
-			else
-				mTag = "";
+			itr++;
 		}
+
+
+		if (mTag == pTagToLookFor)
+			break;
+		else {
+			pStart = pEnd;
+			mTag = "";
+		}
+
+		itr = 0;
 		pStart += 1;
+		pEnd   += 1;
+		itrLen++;
 	}
 
 	if (mTag != "")
