@@ -41,13 +41,14 @@ endif
 all: 327_proj3_test
 
 dependents:
-	-cd /home/silver/Documents/kroelld.git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug && $(MAKE) clean all
+	-cd /home/vixadd/Documents/git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug && $(MAKE) all
+	-cd /home/vixadd/Documents/git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_stringparser/Debug && $(MAKE) all
 
 # Tool invocations
-327_proj3_test: $(OBJS) $(USER_OBJS) /home/silver/Documents/kroelld.git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug/lib327_proj3_fileIO.a
+327_proj3_test: $(OBJS) $(USER_OBJS) /home/vixadd/Documents/git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug/lib327_proj3_fileIO.a /home/vixadd/Documents/git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_stringparser/Debug/lib327_proj3_stringparser.a
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/silver/Documents/kroelld.git/CPSC327/Project 3 - LSCCPSP/327_proj3_fileIO/Debug" -o "327_proj3_test" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/vixadd/Documents/git/CPSC327/Project 3 - LSCCPSP/327_proj3_stringparser/Debug" -L"/home/vixadd/Documents/git/CPSC327/Project 3 - LSCCPSP/327_proj3_fileIO/Debug" -o "327_proj3_test" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -57,6 +58,7 @@ clean:
 	-@echo ' '
 
 .PHONY: all clean dependents
-/home/silver/Documents/kroelld.git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug/lib327_proj3_fileIO.a:
+/home/vixadd/Documents/git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_fileIO/Debug/lib327_proj3_fileIO.a:
+/home/vixadd/Documents/git/CPSC327/Project\ 3\ -\ LSCCPSP/327_proj3_stringparser/Debug/lib327_proj3_stringparser.a:
 
 -include ../makefile.targets

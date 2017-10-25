@@ -25,7 +25,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1619627881" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.dialect.std.662672503" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.c++11" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.843790137" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_filereader}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_stringparser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_fileIO}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.808689032" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -34,7 +34,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.507792603" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.1924053509" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1691894780" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_filereader}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_stringparser}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_fileIO}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.999615543" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
@@ -46,7 +46,7 @@
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="327_proj3_stringparser"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.940338918" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_filereader/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_stringparser/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/327_proj3_fileIO/Debug}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1914902530" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -63,6 +63,10 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="includes"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
@@ -74,6 +78,13 @@
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/327_proj3_fileIO/Debug"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="327_proj3_filereader" srcPrefixMapping="" srcRootPath=""/>
 						<entry flags="RESOLVED" kind="libraryFile" name="327_proj3_fileIO" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<externalSettings containerId="327_proj3_stringparser;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/327_proj3_stringparser"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/327_proj3_stringparser/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="327_proj3_stringparser" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
 			</storageModule>
