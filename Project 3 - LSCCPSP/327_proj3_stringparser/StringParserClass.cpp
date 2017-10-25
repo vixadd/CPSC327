@@ -54,13 +54,19 @@ int KP_StringParserClass::StringParserClass::getDataBetweenTags(char *pDataToSea
 
 	myVector.clear();
 
+	//Initialize pointers
+	char *startTagStartPointer;
+	char *endTagStartPointer;
+	char *startTagEndPointer;
+	char *endTagEndPointer;
+
 	// Pointers for the start tag
-	char *startTagStartPointer = pDataToSearchThru[0];
-	char *endTagStartPointer   = pDataToSearchThru[0];
+	startTagStartPointer = &pDataToSearchThru[0];
+	endTagStartPointer   = &pDataToSearchThru[0];
 
 	// Pointers for the end tag.
-	char *startTagEndPointer   = pDataToSearchThru[0];
-	char *endTagEndPointer     = pDataToSearchThru[0];
+	startTagEndPointer   = &pDataToSearchThru[0];
+	endTagEndPointer     = &pDataToSearchThru[0];
 
 	// Find the location of the start and end pointer.
 	int mFindStartTag = findTag(pStartTag, startTagStartPointer, endTagStartPointer);
@@ -73,7 +79,7 @@ int KP_StringParserClass::StringParserClass::getDataBetweenTags(char *pDataToSea
 		// Initialize the iteration pointer to the character after
 		// the '>' in our start tag, and initialize the string to be
 		// inserted into the vector to an empty string.
-		char *itrPtr = *(endTagStartPointer+1);
+		char *itrPtr = (endTagStartPointer+1);
 		std::string insString = "";
 
 		// Extract the given string between the pointer
@@ -119,7 +125,7 @@ int KP_StringParserClass::StringParserClass::findTag(char *pTagToLookFor, char *
 	// Find location of the starttag
 	while (pStart != 0) {
 
-		if (pStart == '<') {
+		if (*pStart == '<') {
 
 			// Store the start of the pointer temporarily.
 			char *& tempStart = pStart;
@@ -134,7 +140,7 @@ int KP_StringParserClass::StringParserClass::findTag(char *pTagToLookFor, char *
 				pStart += 1;
 
 				// We have reached the end of the tag.
-				if (pStart == '>') {
+				if (*pStart == '>') {
 
 					// Set the values of the start and end of the tag itself.
 					pStart = tempStart;
