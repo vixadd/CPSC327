@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -l327_proj3_fileIO -l327_proj3_stringparser
+LIBS := -l327_proj3_stringparser -l327_proj3_fileIO
 
