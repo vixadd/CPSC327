@@ -64,6 +64,7 @@ iret = KP_FileIO::writeVectortoFile(outputfile,myStrings);
 if (iret != SUCCESS)
 	return iret;
 
+return iret;
 //dump to standard output
 //dumpVecToStdOut(myStrings);
 }
@@ -71,10 +72,10 @@ if (iret != SUCCESS)
 int main(int argc, char *argv[]){
 
 	vector<string> myStrings;
-	int iret = SUCCESS;
+	//int iret = SUCCESS;
 
 
-	if (argc < EXPECTED_NUMBER_ARGUMENTS) {
+	if (argc < EXPECTED_NUMBER_ARGUMENTS || argc > EXPECTED_NUMBER_ARGUMENTS) {
 		cout << WRONG_NUMB_ARGS << endl;
 		return FAIL_WRONG_NUMBER_ARGS;
 	}
