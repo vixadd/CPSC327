@@ -40,14 +40,11 @@ endif
 # All Target
 all: 327_Proj4
 
-dependents:
-	-cd /home/silver/Documents/kroelld.git/CPSC327/Project\ 4\ -\ Object\ Heirarchies\ and\ Pointers/327_Proj4_Lib/Debug && $(MAKE) all
-
 # Tool invocations
-327_Proj4: $(OBJS) $(USER_OBJS) /home/silver/Documents/kroelld.git/CPSC327/Project\ 4\ -\ Object\ Heirarchies\ and\ Pointers/327_Proj4_Lib/Debug/lib327_Proj4_Lib.a
+327_Proj4: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/silver/Documents/kroelld.git/CPSC327/Project 4 - Object Heirarchies and Pointers/327_Proj4_Lib/Debug" -o "327_Proj4" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "327_Proj4" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -57,6 +54,5 @@ clean:
 	-@echo ' '
 
 .PHONY: all clean dependents
-/home/silver/Documents/kroelld.git/CPSC327/Project\ 4\ -\ Object\ Heirarchies\ and\ Pointers/327_Proj4_Lib/Debug/lib327_Proj4_Lib.a:
 
 -include ../makefile.targets
