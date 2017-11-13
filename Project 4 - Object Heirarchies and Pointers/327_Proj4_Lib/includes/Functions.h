@@ -13,7 +13,7 @@
 //for delays
 #include <chrono>
 #include <thread>
-#include "../../327_Proj4_Lib/includes/Smalltalk.h"
+#include "Smalltalk.h"
 
 
 //create a vector with brit(),american(), and donut enthusiest() using unique pointers.  Since we are

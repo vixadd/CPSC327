@@ -9,7 +9,7 @@ public:
 	//use base class call to set Nationality (See constants for Nationality strings)
 	Smalltalk_American(int iPerson =1);
 	Smalltalk_American(std::string myNationality,int iPerson =1);
-	~Smalltalk_American(void);
+	virtual ~Smalltalk_American(void);
 	virtual void populatePhrases();
 };
 

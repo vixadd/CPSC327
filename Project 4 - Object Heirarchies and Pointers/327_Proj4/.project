@@ -3,6 +3,7 @@
 	<name>327_Proj4</name>
 	<comment></comment>
 	<projects>
+		<project>327_Proj4_Lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

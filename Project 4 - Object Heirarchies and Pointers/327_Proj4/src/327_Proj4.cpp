@@ -1,8 +1,19 @@
 // smalltalk_VirtualAbstractVector.cpp : Defines the entry point for the console application.
 //
 #include <iostream>
+#include <vector>
+
+#include "constants.h"
+#include "Functions.h"
+#include "Smalltalk_American.h"
+#include "Smalltalk_Brit.h"
+#include "Smalltalk.h"
+#include "ST_American_DonutEnthusiest.h"
+#include "Watch.h"
+
 
 using namespace std;
+
 //TODO make sure you have the right number of watches
 //TODO make sure you consider the case where you have more watches than people
 //TODO make sure you do not do a deep copy any watches when giving or taking them
@@ -14,15 +25,15 @@ using namespace std;
 
 void demo(){
 	int numEachGroup = 2;
-		int numwatches = 2;
+	int numwatches = 2;
 
-		std::vector<std::unique_ptr<Smalltalk> > myv1 = getPeople(numEachGroup,
-				numEachGroup, numEachGroup, numwatches);
-		int cntr = 0;
-		for (int i = 0; i < myv1.size(); i++) {
-			std::cout << myv1[i]->saySomething() << endl;
-			std::cout << myv1[i]->getTime() << endl;
-		}
+	std::vector<std::unique_ptr<Smalltalk> > myv1
+		= getPeople(numEachGroup,numEachGroup, numEachGroup, numwatches);
+	int cntr = 0;
+	for (int i = 0; i < myv1.size(); i++) {
+		std::cout << myv1[i]->saySomething() << endl;
+		std::cout << myv1[i]->getTime() << endl;
+	}
 }
 int main() {
 	demo();
