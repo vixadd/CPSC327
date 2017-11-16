@@ -6,20 +6,27 @@
  */
 
 #include <iostream>
+
+#include "./includes/constants.h"
 #include "./includes/ST_American_DonutEnthusiest.h"
 
 ST_American_DonutEnthusiest::ST_American_DonutEnthusiest(int iPerson)
-:Smalltalk_American("American_DT", iPerson)
+:Smalltalk_American(AMERICAN_DE, iPerson)
 {
-
+	populatePhrases();
 }
 
-ST_American_DonutEnthusiest::~ST_American_DonutEnthusiest() {
-
-}
+/*
+ * @see ~Smalltalk()
+ */
+ST_American_DonutEnthusiest::~ST_American_DonutEnthusiest() {}
 
 void ST_American_DonutEnthusiest::populatePhrases() {
-
+	this->mySmallTalk.push_back(AMERICAN_DE_PHRASE_1);
+	this->mySmallTalk.push_back(AMERICAN_DE_PHRASE_2);
+	this->mySmallTalk.push_back(AMERICAN_DE_PHRASE_3);
+	this->mySmallTalk.push_back(AMERICAN_DE_PHRASE_4);
+	this->mySmallTalk.push_back(AMERICAN_DE_PHRASE_5);
 }
 
 
