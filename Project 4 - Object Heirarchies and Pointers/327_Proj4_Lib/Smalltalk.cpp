@@ -16,7 +16,7 @@ Smalltalk::Smalltalk(std::string myNationality, int pPerson)
 :nationality(myNationality),
  pWatch(0),
  iPerson(pPerson),
- current_phrase(0)
+ current_phrase(2)
 {
 
 }
@@ -48,20 +48,12 @@ Smalltalk::~Smalltalk() {
 
 
 std::string Smalltalk::getTime() {
-	std::string out = "";
-	out += nationality;
-	out += " ";
-	out += iPerson + ":";
 
 	if(pWatch == 0) {
-		return out + I_DO_NOT_HAVE_A_WATCH;
+		return nationality + " " + std::to_string(this->iPerson) + ":" + I_DO_NOT_HAVE_A_WATCH;
 	}
 
-	out += pWatch->getTime();
-
-	return out;
-
-	return "";
+	return nationality + " " + std::to_string(this->iPerson) + ":" + this->pWatch->getTime();
 }
 
 
@@ -70,20 +62,15 @@ std::string Smalltalk::saySomething() {
 	if(mySmallTalk.empty())
 		return "VECTOR IS EMPTY NOTHING RETURNED.";
 
-	std::string out = "";
-	int size = mySmallTalk.size();
+	std::string phrase = "";
 
-	out += nationality;
-	out += " ";
-	out += this->iPerson + ":";
+	for(unsigned int idx = 1; idx <= this->mySmallTalk.size(); idx++) {
+		if(idx % current_phrase == 0) {
+			phrase = mySmallTalk.at(idx-1);
+		}
+	}
 
-	if(current_phrase > size-1) return "INDEX_OUT_OF_BOUNDS_FOR_mySmallTalk_Error";
-
-	out += mySmallTalk.at(current_phrase);
-
-	return out;
-
-	return "";
+	return nationality + " " + std::to_string(this->iPerson) + ":" + phrase;
 }
 
 Watch* Smalltalk::takeWatch() {
