@@ -25,31 +25,31 @@ std::vector<std::unique_ptr<Smalltalk>> getPeople(int numBrit,
 
 	//add British people to vector
 	for(int cnt =0; cnt < numBrit; cnt++) {
-		std::unique_ptr<Smalltalk> ptrTemp(new Smalltalk_Brit(cnt));
-		smalltalkVect.push_back(std::move(ptrTemp));
+		smalltalkVect.push_back(std::unique_ptr<Smalltalk>(new Smalltalk_Brit(cnt)));
 	}
 
 	//add Americans to vector
 	for(int cnt = 0; cnt < numAmerican; cnt++) {
-		std::unique_ptr<Smalltalk> ptrTemp(new Smalltalk_American(cnt));
-		smalltalkVect.push_back(std::move(ptrTemp));
+		smalltalkVect.push_back(std::unique_ptr<Smalltalk>(new Smalltalk_American(cnt)));
 	}
 
 	//add american_donut_enthusiest  to vector
 	for(int cnt = 0; cnt < numbAmericanDonutEnthusiest; cnt++) {
-		std::unique_ptr<Smalltalk> ptrTemp(new ST_American_DonutEnthusiest(cnt));
-		smalltalkVect.push_back(std::move(ptrTemp));
+		smalltalkVect.push_back(std::unique_ptr<Smalltalk>(new ST_American_DonutEnthusiest(cnt)));
 	}
 
-	//create some watches (as long as number watches <= numb people)	
+	//create some watches (as long as number watches <= numb people)
 	//then give the watches away to first NUM_WATCHES people in the vector
-	//keep in mind that you are responsible for deleting any pointers to 
-	//watches allocated on the heap when you are finished using the vector you return 
+	//keep in mind that you are responsible for deleting any pointers to
+	//watches allocated on the heap when you are finished using the vector you return
 	//from this function(see Smalltalk header for hints)
 
 	for(int i = 0; i < smalltalkVect.size(); i++) {
 		if(numWatches == 0) break;
-		smalltalkVect.at(i)->giveWatch(new Watch());
+		Watch* thisWatch = new Watch();
+		smalltalkVect.at(i)->giveWatch(thisWatch);
+
+		thisWatch = NULL;
 		numWatches--;
 	}
 

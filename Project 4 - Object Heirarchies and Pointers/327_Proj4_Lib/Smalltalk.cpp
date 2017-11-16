@@ -35,15 +35,15 @@ Hence, no need to implement destructor in any of the base classes.
 */
 
 Smalltalk::~Smalltalk() {
-	for ( std::vector<std::string>::iterator it = mySmallTalk.begin(); it != mySmallTalk.end(); it++) {
-			mySmallTalk.erase(it);
-	}
-
-	mySmallTalk.clear();
-
-	if( pWatch != 0 ) {
-		delete pWatch;
-	}
+//	for ( std::vector<std::string>::iterator it = mySmallTalk.begin(); it != mySmallTalk.end(); it++) {
+//			mySmallTalk.erase(it);
+//	}
+//
+//	mySmallTalk.clear();
+//
+//	if( pWatch != 0 ) {
+//		delete pWatch;
+//	}
 }
 
 
@@ -60,6 +60,8 @@ std::string Smalltalk::getTime() {
 	out += pWatch->getTime();
 
 	return out;
+
+	return "";
 }
 
 
@@ -79,6 +81,8 @@ std::string Smalltalk::saySomething() {
 	out += mySmallTalk.at(current_phrase);
 
 	return out;
+
+	return "";
 }
 
 Watch* Smalltalk::takeWatch() {
