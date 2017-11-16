@@ -38,12 +38,12 @@ Smalltalk::~Smalltalk() {
 //	for ( std::vector<std::string>::iterator it = mySmallTalk.begin(); it != mySmallTalk.end(); it++) {
 //			mySmallTalk.erase(it);
 //	}
-//
-//	mySmallTalk.clear();
-//
-//	if( pWatch != 0 ) {
-//		delete pWatch;
-//	}
+
+//	mySmallTalk.clear();   // TODO - This section is broken.
+
+	if( pWatch != 0 ) {
+		delete pWatch;
+	}
 }
 
 
@@ -77,7 +77,8 @@ std::string Smalltalk::saySomething() {
 	out += " ";
 	out += this->iPerson + ":";
 
-	if(iPerson > size-1) return "INDEX_OUT_OF_BOUNDS_FOR_mySmallTalk_Error";
+	if(current_phrase > size-1) return "INDEX_OUT_OF_BOUNDS_FOR_mySmallTalk_Error";
+
 	out += mySmallTalk.at(current_phrase);
 
 	return out;
