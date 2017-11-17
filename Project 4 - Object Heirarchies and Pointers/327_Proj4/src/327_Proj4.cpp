@@ -43,9 +43,7 @@ void demo(){
 
 	// Cleaning up after myself.
 	// So valgrind doesn't get annoyed.
-	for(int i = 0; i < arr_size; i++) {
-		myv1[i]->~Smalltalk();
-	}
+	myv1.clear();
 
 	std::cout << std::endl << "============================================" << std::endl << std::endl;
 
