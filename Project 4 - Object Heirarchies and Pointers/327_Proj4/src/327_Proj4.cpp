@@ -41,6 +41,12 @@ void demo(){
 		std::cout << myv1[i]->getTime() << endl;
 	}
 
+	// Cleaning up after myself.
+	// So valgrind doesn't get annoyed.
+	for(int i = 0; i < arr_size; i++) {
+		myv1[i]->~Smalltalk();
+	}
+
 	std::cout << std::endl << "============================================" << std::endl << std::endl;
 
 	// Second test exchanges watches, and displays watches being given and taken.
@@ -48,10 +54,10 @@ void demo(){
 	std::cout << "Giving BRIT 0 watch to American_Donut_Enthusiest 1" << std::endl;
 	std::cout << "Giving BRIT 1 watch to American 0" << std::endl;
 
-	unique_ptr<Smalltalk> ptr_brit_0(new Smalltalk_Brit(0));
-	unique_ptr<Smalltalk> ptr_brit_1(new Smalltalk_Brit(1));
-	unique_ptr<Smalltalk> ptr_amer_0(new Smalltalk_American(0));
-	unique_ptr<Smalltalk> ptr_amdt_1(new ST_American_DonutEnthusiest(1));
+	Smalltalk_Brit* ptr_brit_0 = new Smalltalk_Brit(0);
+	Smalltalk_Brit* ptr_brit_1 = new Smalltalk_Brit(1);
+	Smalltalk_American* ptr_amer_0 = new Smalltalk_American(0);
+	ST_American_DonutEnthusiest* ptr_amdt_1 = new ST_American_DonutEnthusiest(1);
 
 	ptr_brit_0->giveWatch(new Watch());
 	ptr_brit_1->giveWatch(new Watch());
@@ -75,19 +81,14 @@ void demo(){
 	std::cout << "\t" << ptr_amer_0->getTime() << std::endl;
 	std::cout << "\t" << ptr_amdt_1->getTime() << std::endl;
 
-	std::cout << std::endl << "============================================" << std::endl << std::endl;
-
-
-	// Cleaning up after myself.
-	// So valgrind doesn't get annoyed.
-	for(int i = 0; i < arr_size; i++) {
-		myv1[i]->~Smalltalk();
-	}
 
 	ptr_brit_0->~Smalltalk();
 	ptr_brit_1->~Smalltalk();
 	ptr_amer_0->~Smalltalk();
 	ptr_amdt_1->~Smalltalk();
+
+
+	std::cout << std::endl << "============================================" << std::endl << std::endl;
 
 }
 
