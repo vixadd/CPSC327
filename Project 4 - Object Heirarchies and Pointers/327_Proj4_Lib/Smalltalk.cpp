@@ -54,7 +54,7 @@ std::string Smalltalk::getTime() {
 std::string Smalltalk::saySomething() {
 
 	if(mySmallTalk.empty())
-		return "VECTOR IS EMPTY NOTHING RETURNED.";
+		return nationality + " " + std::to_string(this->iPerson) + ":" + "VECTOR IS EMPTY NO PHRASES POPULATED.";
 
 	std::string phrase = "";
 
