@@ -28,19 +28,67 @@ using namespace std;
 
 void demo(){
 	int numEachGroup = 2;
-	int numwatches = 2;
+	int numwatches = 5;
 
 	std::vector<std::unique_ptr<Smalltalk> > myv1
 		= getPeople(numEachGroup,numEachGroup, numEachGroup, numwatches);
 
-	for (int i = 0; i < myv1.size(); i++) {
+	// First test just outputs values at random.
+	std::cout << std::endl << "================= Test 1 ===================" << std::endl << std::endl;
+	int arr_size = myv1.size();
+	for (int i = 0; i < arr_size; i++) {
 		std::cout << myv1[i]->saySomething() << endl;
 		std::cout << myv1[i]->getTime() << endl;
 	}
 
-	for(int i = 0; i < myv1.size(); i++) {
+	std::cout << std::endl << "============================================" << std::endl << std::endl;
+
+	// Second test exchanges watches, and displays watches being given and taken.
+	std::cout << std::endl << "================= Test 2 ===================" << std::endl << std::endl;
+	std::cout << "Giving BRIT 0 watch to American_Donut_Enthusiest 1" << std::endl;
+	std::cout << "Giving BRIT 1 watch to American 0" << std::endl;
+
+	unique_ptr<Smalltalk> ptr_brit_0(new Smalltalk_Brit(0));
+	unique_ptr<Smalltalk> ptr_brit_1(new Smalltalk_Brit(1));
+	unique_ptr<Smalltalk> ptr_amer_0(new Smalltalk_American(0));
+	unique_ptr<Smalltalk> ptr_amdt_1(new ST_American_DonutEnthusiest(1));
+
+	ptr_brit_0->giveWatch(new Watch());
+	ptr_brit_1->giveWatch(new Watch());
+
+	std::cout << "\n \t -----------Before-------------" << std::endl;
+	std::cout << "\t" << ptr_brit_0->getTime() << std::endl;
+	std::cout << "\t" << ptr_brit_1->getTime() << std::endl << std::endl;
+	std::cout << "\t" << ptr_amer_0->getTime() << std::endl;
+	std::cout << "\t" << ptr_amdt_1->getTime() << std::endl;
+
+	// Attempt to transfer shallow copy of watch over to the Donut Enthusiest.
+	ptr_amdt_1->giveWatch(ptr_brit_0->takeWatch());
+	ptr_amer_0->giveWatch(ptr_brit_1->takeWatch());
+
+	//Try to break this:
+	ptr_brit_1->giveWatch(ptr_brit_0->takeWatch());
+
+	std::cout << "\n \t ---------- After -------------" << std::endl;
+	std::cout << "\t" << ptr_brit_0->getTime() << std::endl;
+	std::cout << "\t" << ptr_brit_1->getTime() << std::endl << std::endl;
+	std::cout << "\t" << ptr_amer_0->getTime() << std::endl;
+	std::cout << "\t" << ptr_amdt_1->getTime() << std::endl;
+
+	std::cout << std::endl << "============================================" << std::endl << std::endl;
+
+
+	// Cleaning up after myself.
+	// So valgrind doesn't get annoyed.
+	for(int i = 0; i < arr_size; i++) {
 		myv1[i]->~Smalltalk();
 	}
+
+	ptr_brit_0->~Smalltalk();
+	ptr_brit_1->~Smalltalk();
+	ptr_amer_0->~Smalltalk();
+	ptr_amdt_1->~Smalltalk();
+
 }
 
 int main() {

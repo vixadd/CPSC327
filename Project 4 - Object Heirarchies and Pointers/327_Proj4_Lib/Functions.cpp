@@ -25,17 +25,17 @@ std::vector<std::unique_ptr<Smalltalk>> getPeople(int numBrit,
 
 	//add British people to vector
 	for(int cnt =0; cnt < numBrit; cnt++) {
-		smalltalkVect.push_back(std::unique_ptr<Smalltalk>(new Smalltalk_Brit(cnt)));
+		smalltalkVect.push_back(std::move(std::unique_ptr<Smalltalk>(new Smalltalk_Brit(cnt))));
 	}
 
 	//add Americans to vector
 	for(int cnt = 0; cnt < numAmerican; cnt++) {
-		smalltalkVect.push_back(std::unique_ptr<Smalltalk>(new Smalltalk_American(cnt)));
+		smalltalkVect.push_back(std::move(std::unique_ptr<Smalltalk>(new Smalltalk_American(cnt))));
 	}
 
 	//add american_donut_enthusiest  to vector
 	for(int cnt = 0; cnt < numbAmericanDonutEnthusiest; cnt++) {
-		smalltalkVect.push_back(std::unique_ptr<Smalltalk>(new ST_American_DonutEnthusiest(cnt)));
+		smalltalkVect.push_back(std::move(std::unique_ptr<Smalltalk>(new ST_American_DonutEnthusiest(cnt))));
 	}
 
 	//create some watches (as long as number watches <= numb people)
@@ -44,7 +44,8 @@ std::vector<std::unique_ptr<Smalltalk>> getPeople(int numBrit,
 	//watches allocated on the heap when you are finished using the vector you return
 	//from this function(see Smalltalk header for hints)
 
-	for(int i = 0; i < smalltalkVect.size(); i++) {
+	int arr_size = smalltalkVect.size();
+	for(int i = 0; i < arr_size; i++) {
 		if(numWatches == 0) break;
 		Watch* thisWatch = new Watch();
 		smalltalkVect.at(i)->giveWatch(thisWatch);

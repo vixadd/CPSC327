@@ -14,6 +14,9 @@ Smalltalk_Brit::Smalltalk_Brit(int iPerson)
 :Smalltalk(BRIT, iPerson)
 {
 	populatePhrases();
+
+	// Set random phrase for the current phrases.
+	this->current_phrase = rand() % 7 + 1;
 }
 
 /*

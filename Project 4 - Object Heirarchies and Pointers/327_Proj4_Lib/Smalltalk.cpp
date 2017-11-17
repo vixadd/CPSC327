@@ -16,10 +16,8 @@ Smalltalk::Smalltalk(std::string myNationality, int pPerson)
 :nationality(myNationality),
  pWatch(0),
  iPerson(pPerson),
- current_phrase(2)
-{
-
-}
+ current_phrase(1)
+{ }
 
 /*
 "You can't have a pure virtual destructor without a body.
@@ -35,15 +33,11 @@ Hence, no need to implement destructor in any of the base classes.
 */
 
 Smalltalk::~Smalltalk() {
-//	for ( std::vector<std::string>::iterator it = mySmallTalk.begin(); it != mySmallTalk.end(); it++) {
-//			mySmallTalk.erase(it);
-//	}
-
-//	mySmallTalk.clear();   // TODO - This section is broken.
 
 	if( pWatch != 0 ) {
 		delete pWatch;
 	}
+
 }
 
 
@@ -65,7 +59,7 @@ std::string Smalltalk::saySomething() {
 	std::string phrase = "";
 
 	for(unsigned int idx = 1; idx <= this->mySmallTalk.size(); idx++) {
-		if(idx % current_phrase == 0) {
+		if(idx == this->current_phrase) {
 			phrase = mySmallTalk.at(idx-1);
 		}
 	}
@@ -75,7 +69,6 @@ std::string Smalltalk::saySomething() {
 
 Watch* Smalltalk::takeWatch() {
 	if(pWatch == 0) {
-		std::cout << I_DO_NOT_HAVE_A_WATCH;
 		return 0;
 	}
 
