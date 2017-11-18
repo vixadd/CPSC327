@@ -16,7 +16,7 @@ Smalltalk::Smalltalk(std::string myNationality, int pPerson)
 :nationality(myNationality),
  pWatch(0),
  iPerson(pPerson),
- current_phrase(1)
+ current_phrase(0)
 { }
 
 /*
@@ -83,6 +83,14 @@ bool Smalltalk::giveWatch(Watch *iWatch) {
 	if(iWatch == 0) {
 		return false;
 	}
+
+	if(this->pWatch) {
+		delete iWatch;
+		return false;
+	}
+
+	// if we don't currently have a watch.
+	// and a watch that is being given exists.
 
 	pWatch = iWatch;
 	return true;

@@ -15,8 +15,6 @@ ST_American_DonutEnthusiest::ST_American_DonutEnthusiest(int iPerson)
 {
 	populatePhrases();
 
-	// Set random phrase for the current phrases.
-	this->current_phrase = rand() % 5 + 1;
 }
 
 /*

@@ -73,6 +73,10 @@ void demo(){
 	//Try to break this:
 	ptr_brit_1->giveWatch(ptr_brit_0->takeWatch());
 
+	//Try to give a watch to someone who already has a watch.
+	cout << std::endl << "\t Giving watch to someone who already has one." << std::endl;
+	ptr_amdt_1->giveWatch(new Watch());
+
 	std::cout << "\n \t ---------- After -------------" << std::endl;
 	std::cout << "\t" << ptr_brit_0->getTime() << std::endl;
 	std::cout << "\t" << ptr_brit_1->getTime() << std::endl << std::endl;

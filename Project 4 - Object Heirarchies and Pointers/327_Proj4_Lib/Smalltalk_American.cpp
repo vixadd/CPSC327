@@ -17,19 +17,16 @@
 #include "./includes/Smalltalk_American.h"
 
 Smalltalk_American::Smalltalk_American(int iPerson)
-:Smalltalk(AMERICAN, iPerson)
+:Smalltalk_American(AMERICAN, iPerson)
 {
 	populatePhrases();
-
-	// Set random phrase for the current phrases.
-	this->current_phrase = rand() % 5 + 1;
 }
 
 Smalltalk_American::Smalltalk_American(std::string myNationality, int iPerson)
 :Smalltalk(myNationality, iPerson)
 {
 	// Set random phrase for the current phrases.
-	this->current_phrase = 1;
+	this->current_phrase = rand() % 5 + 1;
 }
 
 /*
