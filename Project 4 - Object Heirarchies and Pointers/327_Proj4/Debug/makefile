@@ -41,7 +41,7 @@ endif
 all: 327_Proj4
 
 dependents:
-	-cd /home/silver/Documents/kroelld.git/CPSC327/Project\ 4\ -\ Object\ Heirarchies\ and\ Pointers/327_Proj4_Lib/Debug && $(MAKE) clean all
+	-cd /home/silver/Documents/kroelld.git/CPSC327/Project\ 4\ -\ Object\ Heirarchies\ and\ Pointers/327_Proj4_Lib/Debug && $(MAKE) all
 
 # Tool invocations
 327_Proj4: $(OBJS) $(USER_OBJS) /home/silver/Documents/kroelld.git/CPSC327/Project\ 4\ -\ Object\ Heirarchies\ and\ Pointers/327_Proj4_Lib/Debug/lib327_Proj4_Lib.a
