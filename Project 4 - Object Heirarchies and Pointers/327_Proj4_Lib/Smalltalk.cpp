@@ -85,7 +85,6 @@ bool Smalltalk::giveWatch(Watch *iWatch) {
 	}
 
 	if(this->pWatch) {
-		delete iWatch;
 		return false;
 	}
 

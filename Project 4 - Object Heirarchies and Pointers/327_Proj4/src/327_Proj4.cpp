@@ -75,7 +75,9 @@ void demo(){
 
 	//Try to give a watch to someone who already has a watch.
 	cout << std::endl << "\t Giving watch to someone who already has one." << std::endl;
-	ptr_amdt_1->giveWatch(new Watch());
+	unique_ptr<Watch> ptr (std::move(new Watch()));
+	bool result = ptr_amdt_1->giveWatch(ptr.get());
+	std::cout << "\n \t Result of trying to give watch to someone who has one: " << result <<  std::endl;
 
 	std::cout << "\n \t ---------- After -------------" << std::endl;
 	std::cout << "\t" << ptr_brit_0->getTime() << std::endl;
