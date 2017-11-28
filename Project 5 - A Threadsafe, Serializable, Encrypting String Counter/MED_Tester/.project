@@ -3,6 +3,9 @@
 	<name>MED_Tester</name>
 	<comment></comment>
 	<projects>
+		<project>crypto</project>
+		<project>datastore</project>
+		<project>stringdatabase</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

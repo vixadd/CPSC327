@@ -1,9 +1,12 @@
 #pragma once
+
 #include <string>
 #include <vector>
 #include <mutex>
+
 #include "../../datastore/includes/string_data.h"
 #include "../../datastore/includes/data_store_file.h"
+
 
 class String_Database
 {
