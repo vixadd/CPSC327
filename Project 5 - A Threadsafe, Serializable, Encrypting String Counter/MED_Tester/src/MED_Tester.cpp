@@ -10,6 +10,9 @@
 #include <thread>         // std::thread
 #include <sstream>
 
+// TODO - Develop the implmentation
+// TODO - Test the libraries here, the prof will use his
+//        own test version of this file.
 
 
 //I've provided some hints in the form of comments and commented out code
