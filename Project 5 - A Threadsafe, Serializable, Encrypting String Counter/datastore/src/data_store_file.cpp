@@ -50,7 +50,13 @@ bool DataStore_File::save(std::vector<String_Data> &myVector)
 	if(this->openFile(thisFile, this->myFileName, std::ios_base::out)) {
 
 		for(String_Data s : myVector) {
-			// TODO - Figure out how to encrypt string as private variable.
+			std::string serial = s.serialize();
+			std::string data;
+			int count;
+
+			s.parseData(serial, data, count);
+
+			thisFile << data << std::endl;
 		}
 
 		thisFile.close();
