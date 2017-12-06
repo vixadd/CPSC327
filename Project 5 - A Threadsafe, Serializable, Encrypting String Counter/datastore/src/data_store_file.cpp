@@ -29,11 +29,10 @@ bool DataStore_File::load(std::vector<String_Data> &myVector)
 	if(this->openFile(thisFile, this->myFileName, std::ios_base::in)) {
 		std::string str;
 		while(std::getline(thisFile, str)) {
-			if(this->myCrypto){
-				bool encrypted = myCrypto->decrypt(str);
-			}
+			this->decrypt(str);   // Checks if myCrypto exists
 
-			myVector.push_back(str);
+			String_Data sd(str);
+			myVector.push_back(sd);
 		}
 
 		this->closeFile(thisFile);
@@ -47,14 +46,11 @@ bool DataStore_File::load(std::vector<String_Data> &myVector)
 bool DataStore_File::save(std::vector<String_Data> &myVector)
 {
 	std::fstream thisFile;
+	std::string str;
 	if(this->openFile(thisFile, this->myFileName, std::ios_base::out)) {
 
-		for(std::string str: myVector) {
-			if(this->myCrypto) {
-				bool encrypted = this->myCrypto->encrypt(str);
-			}
-
-			thisFile << str << std::endl;
+		for(String_Data s : myVector) {
+			// TODO - Figure out how to encrypt string as private variable.
 		}
 
 		thisFile.close();

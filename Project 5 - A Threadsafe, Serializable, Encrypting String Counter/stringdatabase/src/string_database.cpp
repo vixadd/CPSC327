@@ -13,27 +13,58 @@ String_Database::String_Database()
 
 }
 
-void String_Database::add(std::string &myString)
+String_Database::~String_Database()
 {
 
+}
+
+void String_Database::add(std::string &myString)
+{
+	String_Data s(myString);
+
+	bool notSeen = true;
+	for(String_Data sd : this->myStrings) {
+		if(sd.operator==(s)) {
+			sd.increment();
+			notSeen = false;
+			break;
+		}
+	}
+
+	if(notSeen)
+		myStrings.push_back(s);
 }
 
 int String_Database::getCount(std::string &myString)
 {
-	return 0;
+	String_Data s(myString);
+
+	for (String_Data sd : this->myStrings) {
+		if(sd.operator==(s))
+			return sd.getCount();
+	}
+	return -1;
 }
 
 void String_Database::clear()
 {
-
+	this->myStrings.clear();
 }
 
 bool String_Database::load(DataStore  *myDataStore)
 {
-	return false;
+	if(myDataStore) {
+		return myDataStore->load(this->myStrings);
+	} else {
+		return false;
+	}
 }
 
 bool String_Database::save(DataStore *myDataStore)
 {
-	return false;
+	if(myDataStore) {
+		return myDataStore->save(this->myStrings);
+	} else {
+		return false;
+	}
 }

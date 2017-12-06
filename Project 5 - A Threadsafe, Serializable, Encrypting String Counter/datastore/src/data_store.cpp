@@ -39,10 +39,16 @@ bool DataStore::save(std::vector<String_Data> &myVector)
 
 bool DataStore::decrypt(std::string &myString)
 {
-	return false;
+	if(this->myCrypto)
+		return this->myCrypto->decrypt(myString);
+	else
+		return false;
 }
 
 bool DataStore::encrypt(std::string &myString)
 {
-	return false;
+	if(this->myCrypto)
+		return this->myCrypto->encrypt(myString);
+	else
+		return false;
 }
