@@ -1,7 +1,3 @@
-
-
-// TODO - Please Develop the implementation (data_store.h file)
-
 /*
  * Data Storage implementation for Project 5
  * This is the implmentation of the class.
