@@ -55,13 +55,12 @@ bool DataStore_File::save(std::vector<String_Data> &myVector)
 			int count;
 
 			s.parseData(serial, data, count);
-
 			this->encrypt(data);
 
 			thisFile << data << std::endl;
 		}
 
-		thisFile.close();
+		this->closeFile(thisFile);
 		return true;
 
 	} else {

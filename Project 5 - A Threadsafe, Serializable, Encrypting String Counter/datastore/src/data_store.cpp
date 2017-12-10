@@ -16,8 +16,8 @@ DataStore::DataStore(Crypto *pCrypt)
 DataStore::~DataStore(void)
 {
 	// Manage memory with obj destruction
-	if (myCrypto != NULL) {
-		delete myCrypto;
+	if (myCrypto != 0) {
+		//delete myCrypto; // -- Yeah, don't do this. On the stack, not floating mem.
 	}
 }
 

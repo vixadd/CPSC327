@@ -125,7 +125,7 @@ int main() {
 	// -- Loop through all of the threads, and join them.
 	for(int i = 0; i < size; i++) {
 		arrayThreads[i].join();
-		std::cout << "Joining thread: " << i << std::endl; // -- for debugging
+		std::cout << "Joining thread: " << i+1 << std::endl; // -- for debugging
 	}
 
 	//Then I went through my string_database instance and made sure that it held the correct data
