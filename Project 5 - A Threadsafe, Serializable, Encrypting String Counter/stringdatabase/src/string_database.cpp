@@ -27,9 +27,10 @@ void String_Database::add(std::string &myString)
 		}
 	}
 
-	if(notSeen)
+	if(notSeen){
 		std::lock_guard<std::mutex> m(this->mutex); // Not sure if a lockguard should go here.
 		myStrings.push_back(s);
+	}
 }
 
 int String_Database::getCount(std::string &myString)
