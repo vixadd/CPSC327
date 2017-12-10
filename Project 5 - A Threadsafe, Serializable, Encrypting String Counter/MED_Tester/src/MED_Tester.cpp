@@ -19,7 +19,7 @@
 #include "./includes/crypto_AES.h"
 #include "./includes/HexHelper.h"
 
-// TODO - Develop the implmentation
+// TODO - Develop the implementation
 // TODO - Test the libraries here, the prof will use his
 //        own test version of this file.
 

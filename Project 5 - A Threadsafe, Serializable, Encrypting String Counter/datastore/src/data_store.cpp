@@ -16,7 +16,7 @@ DataStore::DataStore(Crypto *pCrypt)
 DataStore::~DataStore(void)
 {
 	// Manage memory with obj destruction
-	if (myCrypto != 0) {
+	if (myCrypto != NULL) {
 		delete myCrypto;
 	}
 }

@@ -11,7 +11,7 @@
 String_Database::String_Database()
 {}
 
-String_Database::~String_Database() // Not sure if we're supposed to do stuff for these.
+String_Database::~String_Database()
 {}
 
 void String_Database::add(std::string &myString)
