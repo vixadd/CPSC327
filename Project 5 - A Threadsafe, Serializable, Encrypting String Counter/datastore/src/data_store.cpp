@@ -14,12 +14,7 @@ DataStore::DataStore(Crypto *pCrypt)
 {}
 
 DataStore::~DataStore(void)
-{
-	// Manage memory with obj destruction
-	if (myCrypto != 0) {
-		//delete myCrypto; // -- Yeah, don't do this. On the stack, not floating mem.
-	}
-}
+{ /* **No Need to Delete MyCrypto Object. It's on the Stack not free Heap mem. */}
 
 bool DataStore::load(std::vector<String_Data> &myVector)
 {
