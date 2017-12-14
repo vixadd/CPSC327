@@ -37,7 +37,7 @@ int String_Database::getCount(std::string &myString)
 {
 	String_Data s(myString);
 
-	for (String_Data sd : this->myStrings) {
+	for (String_Data &sd : this->myStrings) {
 		if(sd.operator==(s))
 			return sd.getCount();
 	}
