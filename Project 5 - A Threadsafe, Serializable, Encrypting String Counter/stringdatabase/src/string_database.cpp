@@ -19,8 +19,11 @@ void String_Database::add(std::string &myString)
 	String_Data s(myString);
 
 	bool notSeen = true;
-	for(String_Data sd : this->myStrings) {
+	for(String_Data &sd : this->myStrings) {
 		if(sd.operator==(s)) {
+			
+			std::lock_guard<std::mutex> m(this->mutex); // Not sure if a lockguard should go here.
+			
 			sd.increment();
 			notSeen = false;
 			break;
